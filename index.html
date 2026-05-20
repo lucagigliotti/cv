@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luca Gigliotti — CV</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink:     #0f1117;
+    --mid:     #3c3f4e;
+    --muted:   #7a7d8c;
+    --line:    #e2e4ec;
+    --bg:      #f7f7f9;
+    --white:   #ffffff;
+    --accent:  #c8a96e;
+    --sidebar: #0f1117;
+  }
+
+  html { font-size: 15px; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ── LAYOUT ── */
+  .shell {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    min-height: 100vh;
+    max-width: 1100px;
+    margin: 0 auto;
+    box-shadow: 0 0 60px rgba(0,0,0,.12);
+  }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    background: var(--sidebar);
+    color: #d8dae8;
+    padding: 48px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+  }
+
+  .avatar-wrap {
+    text-align: left;
+  }
+  .sidebar-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  .sidebar-role {
+    font-size: .75rem;
+    color: var(--accent);
+    font-weight: 500;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+
+  .s-section-title {
+    font-size: .65rem;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 14px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid rgba(200,169,110,.3);
+  }
+
+  .contact-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .contact-list li { display: flex; align-items: flex-start; gap: 10px; font-size: .82rem; color: #bbbdcc; }
+  .contact-list .icon {
+    width: 20px; height: 20px; flex-shrink: 0; margin-top: 1px;
+    fill: var(--accent); opacity: .85;
+  }
+
+  .skill-group { margin-bottom: 16px; }
+  .skill-group-label {
+    font-size: .7rem;
+    color: var(--accent);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    margin-bottom: 6px;
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+  .skill-tag {
+    background: rgba(255,255,255,.07);
+    border: 1px solid rgba(255,255,255,.1);
+    color: #c5c7d4;
+    border-radius: 4px;
+    padding: 2px 8px;
+    font-size: .72rem;
+    white-space: nowrap;
+  }
+
+  .lang-row { display: flex; justify-content: space-between; align-items: center; padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,.06); font-size: .82rem; }
+  .lang-name { color: #d8dae8; }
+  .lang-level { color: var(--accent); font-size: .75rem; font-weight: 500; }
+
+  /* ── MAIN ── */
+  .main {
+    background: var(--white);
+    padding: 52px 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 44px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: -.01em;
+  }
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+  }
+
+  /* Timeline */
+  .timeline { display: flex; flex-direction: column; gap: 28px; }
+  .tl-item { display: grid; grid-template-columns: 130px 1fr; gap: 0 24px; position: relative; }
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: 137px;
+    top: 8px;
+    bottom: -28px;
+    width: 1px;
+    background: var(--line);
+  }
+  .tl-item:last-child::before { display: none; }
+
+  .tl-date {
+    text-align: right;
+    padding-top: 2px;
+  }
+  .tl-date-range {
+    font-size: .72rem;
+    color: var(--muted);
+    font-weight: 500;
+    letter-spacing: .03em;
+    line-height: 1.4;
+  }
+  .tl-date-range strong { display: block; color: var(--accent); font-size: .78rem; }
+
+  .tl-content { padding-left: 20px; position: relative; }
+  .tl-content::before {
+    content: '';
+    position: absolute;
+    left: -4px;
+    top: 7px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--white);
+    box-shadow: 0 0 0 1px var(--accent);
+  }
+
+  .tl-role {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+  .tl-company {
+    font-size: .8rem;
+    color: var(--muted);
+    margin-bottom: 10px;
+    font-weight: 400;
+  }
+  .tl-company strong { color: var(--mid); font-weight: 500; }
+
+  .tl-bullets { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+  .tl-bullets li {
+    font-size: .82rem;
+    color: var(--mid);
+    padding-left: 14px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .tl-bullets li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: .75rem;
+  }
+
+  /* Projects */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 14px;
+  }
+  .project-card {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 14px 16px;
+    transition: border-color .2s, box-shadow .2s;
+  }
+  .project-card:hover { border-color: var(--accent); box-shadow: 0 4px 16px rgba(200,169,110,.12); }
+  .project-name {
+    font-weight: 500;
+    font-size: .85rem;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .project-desc {
+    font-size: .77rem;
+    color: var(--muted);
+    line-height: 1.45;
+  }
+
+  /* Education */
+  .edu-item { display: flex; gap: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--line); }
+  .edu-item:last-child { border: none; padding-bottom: 0; }
+  .edu-year { min-width: 80px; font-size: .78rem; color: var(--accent); font-weight: 500; padding-top: 3px; }
+  .edu-title { font-weight: 500; font-size: .9rem; color: var(--ink); margin-bottom: 3px; }
+  .edu-where { font-size: .8rem; color: var(--muted); }
+
+  /* ── MOBILE ── */
+  @media (max-width: 768px) {
+    .shell {
+      grid-template-columns: 1fr;
+      box-shadow: none;
+    }
+    .sidebar {
+      position: static;
+      height: auto;
+      padding: 36px 24px;
+    }
+    .main { padding: 36px 24px; }
+    .tl-item { grid-template-columns: 1fr; gap: 4px; }
+    .tl-item::before { display: none; }
+    .tl-date { text-align: left; }
+    .tl-content { padding-left: 0; }
+    .tl-content::before { display: none; }
+    .projects-grid { grid-template-columns: 1fr; }
+  }
+
+  @media print {
+    body { background: white; }
+    .shell { box-shadow: none; max-width: 100%; }
+    .sidebar { position: relative; height: auto; }
+  }
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <!-- ═══════════════ SIDEBAR ═══════════════ -->
+  <aside class="sidebar">
+    <div class="avatar-wrap">
+      <p class="sidebar-name">Luca Gigliotti</p>
+      <p class="sidebar-role">Solution & Enterprise Architect</p>
+      <p style="font-size:.7rem;color:#9496a5;font-style:italic;margin-top:4px;">Technical Leadership & Team Management</p>
+    </div>
+
+    <!-- Contatti -->
+    <div>
+      <p class="s-section-title">Contatti</p>
+      <ul class="contact-list">
+        <li>
+          <svg class="icon" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          Bologna, Italia
+        </li>
+        <li>
+          <svg class="icon" viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.47 11.47 0 003.58.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.47 11.47 0 00.57 3.58 1 1 0 01-.25 1.01l-2.2 2.2z"/></svg>
+          +39 334 5624713
+        </li>
+        <li>
+          <svg class="icon" viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          gigliotti.luca86@gmail.com
+        </li>
+
+      </ul>
+    </div>
+
+    <!-- Competenze -->
+    <div>
+      <p class="s-section-title">Competenze Tecniche</p>
+
+      <div class="skill-group">
+        <p class="skill-group-label">Architecture & Modelling</p>
+        <div class="skill-tags">
+          <span class="skill-tag">Draw.io</span><span class="skill-tag">PlantUML</span>
+          <span class="skill-tag">Miro</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <p class="skill-group-label">API & Integrazione</p>
+        <div class="skill-tags">
+          <span class="skill-tag">REST</span><span class="skill-tag">SOAP</span>
+          <span class="skill-tag">Microservices</span><span class="skill-tag">APIC</span>
+          <span class="skill-tag">gRPC</span><span class="skill-tag">Kafka</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <p class="skill-group-label">Cloud</p>
+        <div class="skill-tags">
+          <span class="skill-tag">AWS</span><span class="skill-tag">Azure</span>
+          <span class="skill-tag">Ansible</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <p class="skill-group-label">Security</p>
+        <div class="skill-tags">
+          <span class="skill-tag">OAuth2</span><span class="skill-tag">JWT</span>
+          <span class="skill-tag">LDAP</span><span class="skill-tag">SSL/TLS</span>
+          <span class="skill-tag">Vault</span><span class="skill-tag">SAML</span>
+          <span class="skill-tag">SSO</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <p class="skill-group-label">DevOps & Infrastructure</p>
+        <div class="skill-tags">
+          <span class="skill-tag">Jenkins</span><span class="skill-tag">Splunk</span>
+          <span class="skill-tag">SonarQube</span><span class="skill-tag">Nexus</span>
+          <span class="skill-tag">Dynatrace</span><span class="skill-tag">Docker</span>
+          <span class="skill-tag">Kubernetes</span><span class="skill-tag">Nginx</span>
+          <span class="skill-tag">Apache</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <p class="skill-group-label">Backend & Framework</p>
+        <div class="skill-tags">
+          <span class="skill-tag">Spring Boot</span><span class="skill-tag">Spring Batch</span>
+          <span class="skill-tag">Zend Framework</span><span class="skill-tag">Node.js</span>
+          <span class="skill-tag">Django</span><span class="skill-tag">Express.js</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <p class="skill-group-label">Database</p>
+        <div class="skill-tags">
+          <span class="skill-tag">MySQL</span><span class="skill-tag">MongoDB</span>
+          <span class="skill-tag">DB2</span><span class="skill-tag">Oracle</span>
+          <span class="skill-tag">Redis</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <p class="skill-group-label">Linguaggi di Programmazione</p>
+        <div class="skill-tags">
+          <span class="skill-tag">Java</span><span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">TypeScript</span><span class="skill-tag">PHP</span>
+          <span class="skill-tag">SQL</span><span class="skill-tag">Python</span>
+          <span class="skill-tag">Bash/Shell</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <p class="skill-group-label">Frontend & Web</p>
+        <div class="skill-tags">
+          <span class="skill-tag">HTML</span><span class="skill-tag">CSS</span>
+          <span class="skill-tag">Angular</span><span class="skill-tag">Ionic</span>
+          <span class="skill-tag">React</span><span class="skill-tag">Vue.js</span>
+          <span class="skill-tag">Webpack</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <p class="skill-group-label">Project Management</p>
+        <div class="skill-tags">
+          <span class="skill-tag">Jira</span><span class="skill-tag">GitLab</span>
+          <span class="skill-tag">Trello</span><span class="skill-tag">MantisHub</span>
+          <span class="skill-tag">Confluence</span><span class="skill-tag">Asana</span>
+          <span class="skill-tag">Scrum</span><span class="skill-tag">Kanban</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <p class="skill-group-label">Versioning</p>
+        <div class="skill-tags">
+          <span class="skill-tag">Git</span><span class="skill-tag">GitHub</span>
+          <span class="skill-tag">Bitbucket</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <p class="skill-group-label">Design & Grafica</p>
+        <div class="skill-tags">
+          <span class="skill-tag">Figma</span><span class="skill-tag">Adobe XD</span>
+          <span class="skill-tag">Photoshop</span><span class="skill-tag">Illustrator</span>
+          <span class="skill-tag">InDesign</span><span class="skill-tag">Acrobat</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lingue -->
+    <div>
+      <p class="s-section-title">Lingue</p>
+      <div class="lang-row"><span class="lang-name">Italiano</span><span class="lang-level">Madrelingua</span></div>
+      <div class="lang-row"><span class="lang-name">Inglese</span><span class="lang-level">B1</span></div>
+      <div class="lang-row"><span class="lang-name">Tedesco</span><span class="lang-level">A2</span></div>
+    </div>
+
+    <!-- Altro -->
+    <div>
+      <p class="s-section-title">Altro</p>
+      <p style="font-size:.8rem;color:#9496a5;">Patente A – B</p>
+      <p style="font-size:.8rem;color:#9496a5;margin-top:6px;">Scienze di Internet · Alma Mater di Bologna (interrotto)</p>
+    </div>
+  </aside>
+
+  <!-- ═══════════════ MAIN ═══════════════ -->
+  <main class="main">
+
+    <!-- PROFILO -->
+    <section>
+      <div class="section-header">
+        <h2 class="section-title">Profilo</h2>
+        <div class="section-line"></div>
+      </div>
+      <p style="font-size:.9rem;color:var(--mid);line-height:1.7;max-width:580px;">
+        Solution & Enterprise Architect con oltre 15 anni di esperienza nel settore IT, con un percorso che spazia dallo sviluppo full-stack fino alla progettazione di architetture enterprise distribuite e alla governance tecnologica aziendale. Specializzato nella definizione di visioni architetturali orizzontali, nella decomposizione di sistemi monolitici in microservizi auto-consistenti e nell'integrazione di ecosistemi tecnologici complessi, inclusi applicativi SaaS esterni. Riconosciuto per la capacità di tradurre strategie di business in architetture scalabili e sicure, guidare team multidisciplinari e accompagnare le organizzazioni in percorsi strutturati di modernizzazione e trasformazione tecnologica.
+      </p>
+    </section>
+
+    <!-- ESPERIENZE -->
+    <section>
+      <div class="section-header">
+        <h2 class="section-title">Esperienze Professionali</h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="timeline">
+
+        <!-- Unipolrental -->
+        <div class="tl-item">
+          <div class="tl-date">
+            <div class="tl-date-range">
+              <strong>Oggi</strong>
+              Gen 2022
+            </div>
+          </div>
+          <div class="tl-content">
+            <p class="tl-role">Enterprise Architect & Engineering Manager</p>
+            <p class="tl-company"><strong>Unipolrental</strong> · Bologna</p>
+            <ul class="tl-bullets">
+              <li>Responsabilità tecnica dell'ufficio <strong>Integration Service</strong>: definizione di una visione architetturale orizzontale sui sistemi aziendali, con l'obiettivo di decomporre il monolite esistente in microservizi auto-consistenti, standardizzare le interfacce di comunicazione tra sistemi e valutare, dominio per dominio, se evolvere componenti esistenti o progettare nuovi servizi condivisi a fattor comune.</li>
+              <li>Definizione dell'architettura di integrazione tra i sistemi Unipolrental e applicativi SaaS esterni, con responsabilità end-to-end sulla coerenza e la scalabilità dell'ecosistema tecnologico aziendale.</li>
+              <li>Definizione e standardizzazione del processo di sviluppo IT aziendale tramite Jira Cloud, stabilendo le regole operative per tutti i team tecnici dell'organizzazione.</li>
+              <li>Gestione di due team con figure eterogenee: PM, analisti funzionali e sviluppatori.</li>
+              <li>Definizione delle roadmap progettuali e interfaccia strategica tra business e IT.</li>
+              <li>Coordinamento tra tutti gli stakeholder tecnici e di business coinvolti nei progetti.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Capgemini -->
+        <div class="tl-item">
+          <div class="tl-date">
+            <div class="tl-date-range">
+              <strong>Gen 2022</strong>
+              Giu 2018
+            </div>
+          </div>
+          <div class="tl-content">
+            <p class="tl-role">Solution Architect & Technical Lead</p>
+            <p class="tl-company"><strong>Capgemini</strong> · Bologna</p>
+            <ul class="tl-bullets">
+              <li>Definizione delle architetture applicative e technical lead su progetti enterprise per <strong>UnipolSai Vita</strong> e <strong>Arca Vita</strong>.</li>
+              <li>Technical lead dei team di sviluppo frontend e backend, con responsabilità sulla qualità tecnica e sul rispetto degli standard architetturali definiti.</li>
+              <li>Supervisione e validazione della documentazione di analisi tecnica e funzionale, garantendo la coerenza tra le scelte architetturali e i requisiti di business.</li>
+              <li>Pianificazione e gestione dei rilasci in produzione, recruitment e formazione del team di sviluppo.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Freelands -->
+        <div class="tl-item">
+          <div class="tl-date">
+            <div class="tl-date-range">
+              <strong>Giu 2018</strong>
+              Ott 2014
+            </div>
+          </div>
+          <div class="tl-content">
+            <p class="tl-role">Technical Lead</p>
+            <p class="tl-company"><strong>Freelands</strong> · Bologna</p>
+            <ul class="tl-bullets">
+              <li>Technical lead dei team di sviluppo frontend e backend, con supervisione sulla qualità del codice e sulle scelte tecnologiche.</li>
+              <li>Progettazione e sviluppo di applicazioni web e mobile ibride, con responsabilità tecnica end-to-end.</li>
+              <li>Pianificazione, monitoraggio e gestione del ciclo di rilascio dei progetti, dalla definizione dei requisiti al deploy in produzione.</li>
+              <li>Formazione e crescita tecnica del personale di sviluppo.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- XGnet -->
+        <div class="tl-item">
+          <div class="tl-date">
+            <div class="tl-date-range">
+              <strong>Mar 2014</strong>
+              Feb 2012
+            </div>
+          </div>
+          <div class="tl-content">
+            <p class="tl-role">Full Stack Developer</p>
+            <p class="tl-company"><strong>XGnet</strong> · San Lazzaro di Savena (BO)</p>
+            <ul class="tl-bullets">
+              <li>Progettazione e sviluppo di siti istituzionali, e-commerce e applicazioni web su misura per clienti di diversi settori.</li>
+              <li>Progettazione architetturale, sviluppo e gestione dei requisiti di un ERP interno per la gestione operativa aziendale, con responsabilità end-to-end sull'intero ciclo di vita del software.</li>
+              <li>Attività di SEO, web marketing e gestione dei servizi di hosting per la clientela.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Mediacem -->
+        <div class="tl-item">
+          <div class="tl-date">
+            <div class="tl-date-range">
+              <strong>2011</strong>
+            </div>
+          </div>
+          <div class="tl-content">
+            <p class="tl-role">Full Stack Developer</p>
+            <p class="tl-company"><strong>Mediacem Communication Engineering</strong> · Bologna</p>
+            <ul class="tl-bullets">
+              <li>Sviluppo di CMS personalizzati per siti vetrina ed e-commerce, con cura della grafica e delle interfacce web.</li>
+              <li>Sviluppo e manutenzione dell'ERP interno per la gestione delle commesse aziendali.</li>
+              <li>Gestione dei servizi di hosting per la clientela e attività di SEO.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Emilmedia -->
+        <div class="tl-item">
+          <div class="tl-date">
+            <div class="tl-date-range">
+              <strong>2010</strong>
+              2007
+            </div>
+          </div>
+          <div class="tl-content">
+            <p class="tl-role">Web Designer & Developer</p>
+            <p class="tl-company"><strong>Emilmedia</strong> · San Lazzaro di Savena (BO)</p>
+            <ul class="tl-bullets">
+              <li>Progettazione e sviluppo di siti web e dell'e-commerce aziendale, con gestione completa del ciclo di vita dei progetti web.</li>
+              <li>Creazione di interfacce grafiche e materiali di comunicazione visiva per la clientela.</li>
+              <li>Gestione dei ticket clientela per siti web e servizi di hosting.</li>
+              <li>Configurazione e gestione dell'infrastruttura di rete aziendale.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+
+    <!-- FORMAZIONE -->
+    <section>
+      <div class="section-header">
+        <h2 class="section-title">Formazione</h2>
+        <div class="section-line"></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <div class="edu-item">
+          <div class="edu-year">Interrotto</div>
+          <div>
+            <p class="edu-title">Corso Universitario — Scienze di Internet</p>
+            <p class="edu-where">Alma Mater Studiorum di Bologna</p>
+          </div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-year">2004</div>
+          <div>
+            <p class="edu-title">Diploma Tecnico dei Servizi Turistici e Commerciali</p>
+            <p class="edu-where">Istituto Tecnico Manfredi/Tanari · Bologna</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer style="margin-top:auto;padding-top:24px;border-top:1px solid var(--line);text-align:right;">
+      <p style="font-size:.75rem;color:var(--muted);">Autorizzo il trattamento dei miei dati personali ai sensi del D.Lgs. 196/2003, coordinato con il D.Lgs. 101/2018, e dell'art. 13 del GDPR (Regolamento UE 2016/679).</p>
+      <p style="font-size:.75rem;color:var(--accent);margin-top:4px;font-weight:500;">Bologna, 2026 · Luca Gigliotti</p>
+    </footer>
+
+  </main>
+</div>
+</body>
+</html>
